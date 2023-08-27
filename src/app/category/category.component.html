@@ -1,0 +1,46 @@
+<div class="row justify-content-center md-3">
+    <div class="col-md-4 text-center">
+        <h1>TODO CATEGORIES</h1>
+        <p class="text-info">
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. 
+        </p>
+    </div>
+</div>
+
+
+    
+<form #f="ngForm" (ngSubmit)="f.valid && onSubmit(f)">
+    <div class="row">
+        <div class="form-group col-md-10">
+            <input type="text"  name="categoryName" id="" class="form-control drop-shadow" [ngClass]="{bd:(category.invalid)&&(f.submitted)&&(category.errors['required'])}" placeholder="Add New Categories here.." [(ngModel)]="categoryName" required #category="ngModel">
+            <small *ngIf="!category.valid && f.submitted" class="text-danger">Category is required</small>
+        </div>
+        <button type="submit" class="btn btn-primary col-md-2 btn-todo btn-block drop-shadow"> {{buttonName}} </button>
+    </div>        
+</form>
+
+<div class="row category-list">
+    <div class="col-md-3" *ngFor="let cat of categoryList">
+        <div class="card" [style.border-left-color]="cat.data.color" >
+            <div class="card-body drop-shadow ">
+                <div class="clearfix">
+                    <div class="float-start"> 
+                        <div class="badge badge-category"> CATEGORY </div>
+                    </div>
+                    <div class="float-end cat-tools">
+                        <small><i class="fa fa-pencil-alt text-success" (click)="onEdit(cat.data.category,cat.id)"></i></small>
+                        <small><i class="fas fa-trash text-danger" (click)="onDelete(cat.id)"></i></small>
+                    </div>
+                </div>
+
+                <div class="todo-content" [routerLink]="['/todo',cat.id]">
+                    <h2 [style.color]="cat.data.color"> {{cat.data.category}} </h2>
+                    <small class="text-secondary">Lorem, ipsum dolor sit amet consectetur adipisicing elit.</small>
+                </div>
+                <small class="badge badge-todo">{{ cat.data.todoCount }}-Todos</small>
+            </div>
+        </div>
+    </div>
+</div>
+
+
