@@ -12,7 +12,7 @@
 <form #f="ngForm" (ngSubmit)="f.valid && onSubmit(f)">
     <div class="row">
         <div class="form-group col-md-10">
-            <input type="text"  name="categoryName" id="" class="form-control drop-shadow" [ngClass]="{bd:(category.invalid)&&(f.submitted)&&(category.errors['required'])}" placeholder="Add New Categories here.." [(ngModel)]="categoryName" required #category="ngModel">
+            <input type="text"  name="categoryName" id="" class="form-control drop-shadow" [ngClass]="{bd:(category.invalid)&&(f.submitted)&&(category.errors['required']),'is-invalid': !category.valid && f.submitted}" placeholder="Add New Categories here.." [(ngModel)]="categoryName" required #category="ngModel">
             <small *ngIf="!category.valid && f.submitted" class="text-danger">Category is required</small>
         </div>
         <button type="submit" class="btn btn-primary col-md-2 btn-todo btn-block drop-shadow"> {{buttonName}} </button>
